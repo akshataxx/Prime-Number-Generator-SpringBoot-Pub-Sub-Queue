@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Numbers Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+    <script>
+        // Default number for prime calculation
+        const defaultNumber = 100000;
+
+        const basicAuth = btoa("admin:admin"); // credentials for Basic Auth
+        const headers = new Headers();
+        headers.append("Authorization", "Basic " + basicAuth); // Basic Auth header
+
+        window.onload = function() {
+            // Start fetching recent answers immediately
+            fetchRecentAnswers();
+
+            // Set an interval to fetch recent answers every second
+            setInterval(fetchRecentAnswers, 1000);
+        }
+
+        function fetchRecentAnswers() {
+            fetch('http://localhost:8080/api/answer')
+                .then(response => response.json())
+                .then(data => {
+                    let output = '';
+                    data.forEach(answer => {
+                        output += `<p>Primes: ${answer.answer.join(', ')}, Time taken: ${answer.timeTaken} ms</p>`;
+                    });
+                    document.getElementById('answers').innerHTML = output;
+                });
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            const number = document.getElementById('number').value || defaultNumber;
+            fetch(`http://localhost:8080/api/answer/publish?max=${number}`, {
+                method: 'POST',
+            }).then(response => {
+                if (response.ok) {
+                    alert("Question published successfully!");
+                } else {
+                    alert("Failed to publish question!");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<h1>Prime Numbers Calculator</h1>
+<form onsubmit="submitForm(event)">
+    <label for="number">Enter a number:</label>
+    <input type="number" id="number" name="number" min="1" max="1000000">
+    <input type="submit" value="Calculate primes">
+</form>
+<div id="answers">
+    <!-- Recent answers will be inserted here -->
+</div>
+</body>
+</html>

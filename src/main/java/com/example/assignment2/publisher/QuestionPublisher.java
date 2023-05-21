@@ -22,7 +22,6 @@ import java.util.concurrent.ThreadLocalRandom;
 @RestController
 public class QuestionPublisher {
     private final RabbitTemplate rabbitTemplate;
-
     @Autowired
     public QuestionPublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
@@ -52,16 +51,16 @@ public class QuestionPublisher {
     @PostMapping("/publish")
     public ResponseEntity<String> manualPublish(@RequestParam(value = "max", required = false) Integer max) {
 
-        /*int selectedMax = (max != null && max > 0) ? max : defaultMax;
-        publishQuestion(selectedMax);
-        return ResponseEntity.ok("Question published");*/
+        int selectedMax;
+        if (max == null) {
+            selectedMax = 100000; // Use the default value
+        } else if (max > 0 && max <= 1000000) {
+            selectedMax = max; // Use the user-provided value
+        } else {
+            return ResponseEntity.badRequest().body("Invalid max value"); // Reject invalid values
+        }
 
-        if (max != null && max > 0 && max <= 1000000){
-            publishQuestion(max);
-            return ResponseEntity.ok("Question published");
-        }
-        else{
-            return ResponseEntity.badRequest().body("Invalid max value");
-        }
+        publishQuestion(selectedMax);
+        return ResponseEntity.ok("Question published");
     }
 }

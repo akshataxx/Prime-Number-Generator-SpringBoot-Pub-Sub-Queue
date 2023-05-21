@@ -36,5 +36,13 @@ public class ResponseRepository {
     public List<Answer> getRecentAnswers() {
         return recentAnswers;
     }
+
+    /**
+     * The getLatestAnswer() method returns the most recent Answer object from the recentAnswers list.
+     * If the list is empty, the method returns null.
+     */
+    public Answer getLatestAnswer() {
+        return recentAnswers.isEmpty() ? null : recentAnswers.getLast();
+    }
 }
 

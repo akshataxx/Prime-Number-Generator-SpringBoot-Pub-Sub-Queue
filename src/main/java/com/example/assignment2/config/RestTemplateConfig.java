@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.RestTemplate;
 
-//class provides configuration for `RestTemplate` to send HTTP requests
-//annotation provides bean definitions and configurations for the RestTemplate
+/**
+ * Class to provide bean definition and configurations for RestTemplate to send HTTP requests to RPC server
+ * @Configuration annotation provides bean definitions and configurations for the RestTemplate
+ */
 @Configuration
 public class RestTemplateConfig {
 
@@ -21,9 +23,10 @@ public class RestTemplateConfig {
     @Value("${client.rpc.url}")
     private String rpcUrl;
 
-    /*bean method creates an instance of RestTemplate and adds a BasicAuthenticationInterceptor
-    to its interceptors list.This interceptor provides basic authentication by setting the provided
-    username and password in the Authorization header of the outgoing HTTP requests.
+    /**
+     * Method to create a new RestTemplate instance and add a BasicAuthenticationInterceptor to its interceptors list
+     * This interceptor provides basic authentication by setting the provided username and password in the Authorization header of the outgoing HTTP requests
+     * @return RestTemplate
      */
     @Bean
     public RestTemplate restTemplate() {
@@ -32,7 +35,10 @@ public class RestTemplateConfig {
         return restTemplate;
     }
 
-    //bean method returns the value of the rpcUrl property
+    /**
+     * Method to return the value of the rpcUrl property
+     * @return String
+     */
     @Bean
     public String rpcEndpointUrl() {
         return rpcUrl;
