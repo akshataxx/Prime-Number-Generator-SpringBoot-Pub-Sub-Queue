@@ -36,5 +36,9 @@ public class ResponseRepository {
     public List<Answer> getRecentAnswers() {
         return recentAnswers;
     }
+
+    public Answer getLatestAnswer() {
+        return recentAnswers.isEmpty() ? null : recentAnswers.getLast();
+    }
 }
 
