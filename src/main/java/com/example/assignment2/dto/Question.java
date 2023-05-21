@@ -12,7 +12,6 @@ public class Question {
      * The question to be asked
      * Consists of the number to be checked for primality
      */
-
     private int question;
 }
 

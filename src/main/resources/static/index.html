@@ -11,6 +11,10 @@
         // Default number for prime calculation
         const defaultNumber = 100000;
 
+        const basicAuth = btoa("admin:admin"); // credentials for Basic Auth
+        const headers = new Headers();
+        headers.append("Authorization", "Basic " + basicAuth); // Basic Auth header
+
         window.onload = function() {
             // Start fetching recent answers immediately
             fetchRecentAnswers();

@@ -51,7 +51,6 @@ public class QuestionSubscriber  {
      */
     @RabbitListener(queues = MessagingConfiguration.QUEUE)
     public void consumeQuestionFromQueue(Question question) {
-        //The received question is checked to ensure it does not exceed the maximum value.
         try{
             if (question.getQuestion() >= 1000000 || question.getQuestion() < 0){
                 return;
@@ -61,7 +60,6 @@ public class QuestionSubscriber  {
             System.out.println("starttime from subscriber: "+startTime);
             //Thread.sleep(50);
 
-            //The prime numbers are calculated using the calculatePrimes() method
             List<Integer> primes = calculatePrimes(question.getQuestion());
 
             long endTime = System.currentTimeMillis();
@@ -70,21 +68,13 @@ public class QuestionSubscriber  {
             long timeTaken = endTime - startTime;
             System.out.println("Time taken from subscriber: "+timeTaken);
 
-            //The answer is created with the prime numbers and the time taken
             Answer answer = new Answer();
             answer.setAnswer(primes);
             System.out.println("Primes from subscriber: "+primes);
             answer.setTimeTaken(timeTaken);
 
-            //The answer is saved to the ResponseRepository
             responseRepository.saveAnswer(answer);
 
-            /*HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            //An HTTP POST request is made to the RPC endpoint using RestTemplate to send the answer data
-            HttpEntity<Answer> request = new HttpEntity<>(answer, headers);
-            restTemplate.postForObject(rpcEndpoint, request, Void.class);*/
         } catch (Exception e) {
             e.printStackTrace();
             // Handle the exception or log it as needed

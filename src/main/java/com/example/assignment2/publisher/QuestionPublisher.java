@@ -51,12 +51,7 @@ public class QuestionPublisher {
     @PostMapping("/publish")
     public ResponseEntity<String> manualPublish(@RequestParam(value = "max", required = false) Integer max) {
 
-        /*int selectedMax = (max != null && max > 0) ? max : defaultMax;
-        publishQuestion(selectedMax);
-        return ResponseEntity.ok("Question published");*/
-
         int selectedMax;
-
         if (max == null) {
             selectedMax = 100000; // Use the default value
         } else if (max > 0 && max <= 1000000) {

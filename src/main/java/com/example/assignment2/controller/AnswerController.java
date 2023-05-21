@@ -5,7 +5,6 @@ import com.example.assignment2.publisher.QuestionPublisher;
 import com.example.assignment2.repository.ResponseRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -26,49 +25,50 @@ public class AnswerController {
      * Repository is available to AnswerController
      * @param responseRepository
      */
-
     public AnswerController(ResponseRepository responseRepository, QuestionPublisher questionPublisher) {
         this.responseRepository = responseRepository;
         this.questionPublisher = questionPublisher;
     }
-
     /**
      * handles GET requests to retrieve the recent answers from the ResponseRepository and
      * returns them as a list
-     * @return
+     * @return ResponseEntity<List<Answer>>
      */
-   /* @GetMapping("/answers")
-    public ResponseEntity <List<Answer>> getRecentAnswers(){ //swagger annotations TODO
-        List<Answer> recentAnswers = responseRepository.getRecentAnswers();
-
-        if(recentAnswers.isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        //return responseRepository.getRecentAnswers();
-        return
-    }*/
-
     @GetMapping
     public ResponseEntity <List<Answer>> getRecentAnswers(){
         return ResponseEntity.ok(responseRepository.getRecentAnswers());
     }
 
+    /**
+     * handles POST requests to receive new answers and saves them to the ResponseRepository
+     * @param answer
+     * @return ResponseEntity<String>
+     */
     @PostMapping("/answers")
     public ResponseEntity<String> receiveAnswer(@RequestBody Answer answer){
         responseRepository.saveAnswer(answer);
         return ResponseEntity.ok("Answer received");
     }
 
+    /**
+     * handles POST requests to publish new questions and saves them to the ResponseRepository
+     * @param max
+     * @return ResponseEntity<String>
+     */
     @PostMapping("/publish")
     public ResponseEntity<String> publishQuestion(@RequestParam(value = "max", required = false) Integer max) {
         return questionPublisher.manualPublish(max);
     }
 
+    /**
+     * handles GET requests to retrieve the latest answer from the ResponseRepository and
+     * returns it
+     * @return Answer
+     */
     @GetMapping("/latestAnswer")
     public Answer getLatestAnswer() {
         return responseRepository.getLatestAnswer();
     }
-
 
     /**
      * handles POST requests to receive new answers and saves them to the ResponseRepository
