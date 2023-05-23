@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>assignment-2</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>assignment-2</name>
     <description>assignment-2</description>
     <properties>
@@ -75,6 +75,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>spring-boot-docker</finalName>
     </build>
 
 </project>

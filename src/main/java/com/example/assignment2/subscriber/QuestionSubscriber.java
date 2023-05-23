@@ -82,7 +82,6 @@ public class QuestionSubscriber  {
     }
 
     //TODO put all the below in another service class - CalculatePrimeService
-
     /**
      * The method calculates the prime numbers up to the given number(max).
      */
