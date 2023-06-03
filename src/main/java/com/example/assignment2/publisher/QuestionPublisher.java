@@ -53,7 +53,7 @@ public class QuestionPublisher {
 
         int selectedMax;
         if (max == null) {
-            selectedMax = 100000; // Use the default value
+            selectedMax = 1000000; // Use the default value
         } else if (max > 0 && max <= 1000000) {
             selectedMax = max; // Use the user-provided value
         } else {

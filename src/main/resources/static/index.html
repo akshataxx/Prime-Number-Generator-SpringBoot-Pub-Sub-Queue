@@ -14,6 +14,7 @@
         const basicAuth = btoa("admin:admin"); // credentials for Basic Auth
         const headers = new Headers();
         headers.append("Authorization", "Basic " + basicAuth); // Basic Auth header
+        //change to 35.197.164.42 before deploying to cloud
         const url= "http://localhost";
 
         window.onload = function() {

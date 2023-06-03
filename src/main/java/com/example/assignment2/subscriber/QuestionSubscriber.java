@@ -58,7 +58,7 @@ public class QuestionSubscriber  {
             System.out.println("Question from subscriber: "+question.getQuestion());
             long startTime = System.currentTimeMillis();
             System.out.println("starttime from subscriber: "+startTime);
-            //Thread.sleep(50);
+            Thread.sleep(3);
 
             List<Integer> primes = calculatePrimes(question.getQuestion());
 
