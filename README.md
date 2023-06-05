@@ -1,7 +1,7 @@
 # Prime-Number-Generator-SpringBoot-Pub-Sub-Queue
 Generates prime number for a user configured parameter using a pub/sub queue in a springboot application
 
-To run the application on localhost
+****To run the application on localhost****
 Use Intellij Ultimate (Community edition won't work) or any IDE of your choice that has Java 17 and maven.
 
 Install the windows/mac installer for erlang (25.1 version only) to be able to run rabbitmq (if you don't have erlang already installed) - https://www.erlang.org/patches/otp-25.1
@@ -34,12 +34,13 @@ Alternatively, the endpoint can also be monitored in postman.
 
 Enjoy the prime number generation game!
 
-To run the application on cloud endpoint
+****To run the application on cloud endpoint****
 
-
-Use this ip address to access the application in your browser - http://35.197.164.42/
+Use this ip address to access the application in your browser - http://35.197.164.42/.
 
 Username and password is 'admin' to log into application.
+
+Application deployed using Docker container and Google Kubernetes Engine.
 
 Enjoy the prime number generation game!
 
