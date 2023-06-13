@@ -45,7 +45,7 @@ Use this ip address to access the application in your browser - http://35.197.16
 
 Username and password is 'admin' to log into application.
 
-Application deployed using Docker container and Google Kubernetes Engine.
+Application deployed via CI-CD pipeline using Docker container and Kubernetes cluster on Google Kubernetes Engine.
 
 Enjoy the prime number generation game!
 
