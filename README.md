@@ -1,5 +1,5 @@
 # Prime-Number-Generator-SpringBoot-Pub-Sub-Queue
-Generates prime number for a user configured parameter using a rabbitmq pub/sub queue in a springboot application
+Generates prime number for a user configured parameter using a rabbitmq pub/sub queue in a springboot application. Build done via automated CI-CD Jenkins pipeline and using Docker for containerisaion. Deployed using a K8s cluster on Google Kubernetes Engine. 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -33,7 +33,9 @@ Go to http://localhost:8080 OR http://localhost:8080/index.html to be able to ac
 
 Username and password is 'admin' to log into application.
 
-Alternatively, the endpoint can also be monitored in postman.
+Alternatively, the endpoint can also be monitored in postman. Username and password for basic auth header is "admin".
+GET: http://localhost:8080/api/answer
+POST: http://localhost:8080/publish?max={max}
 
 Enjoy the prime number generation game!
 
